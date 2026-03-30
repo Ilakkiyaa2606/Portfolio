@@ -1,5 +1,6 @@
 import { memo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { FaRobot, FaCalendarAlt, FaMoneyBillWave } from 'react-icons/fa'
 
 export interface ProjectData {
   id: number
@@ -11,6 +12,12 @@ export interface ProjectData {
   solution: string
   techStack: string[]
   outcome: string
+}
+
+const iconMap: Record<string, React.ReactNode> = {
+  robot: <FaRobot />,
+  calendar: <FaCalendarAlt />,
+  money: <FaMoneyBillWave />,
 }
 
 interface ProjectModalProps {
@@ -51,7 +58,7 @@ export const ProjectModal = memo(({ project, onClose }: ProjectModalProps) => {
               </button>
 
               <div className="flex items-start gap-4">
-                <span className="text-5xl">{project.icon}</span>
+                <span className="text-5xl text-white">{iconMap[project.icon]}</span>
                 <div>
                   <h2 className="text-3xl font-bold text-white mb-2">{project.title}</h2>
                   <p className="text-white/90">{project.description}</p>

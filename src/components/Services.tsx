@@ -1,5 +1,6 @@
 import { memo } from 'react'
 import { motion } from 'framer-motion'
+import { FaRobot, FaGlobe, FaBullhorn, FaStar } from 'react-icons/fa'
 
 interface Service {
   id: number
@@ -14,31 +15,38 @@ const services: Service[] = [
     id: 1,
     title: 'AI Chatbot Development',
     description: 'Intelligent conversational AI systems with NLP, RAG, and real-time integration capabilities',
-    icon: '🤖',
+    icon: 'robot',
     color: 'from-blue-600 to-cyan-500',
   },
   {
     id: 2,
     title: 'Website Development',
     description: 'Modern, responsive websites built with React, Next.js, and optimized for performance',
-    icon: '🌐',
+    icon: 'globe',
     color: 'from-purple-600 to-pink-500',
   },
   {
     id: 4,
     title: 'Social Media Management',
     description: 'Strategic content planning, community engagement, and growth optimization',
-    icon: '📢',
+    icon: 'megaphone',
     color: 'from-orange-600 to-red-500',
   },
   {
     id: 5,
     title: 'Content Creation',
     description: 'Engaging visual and written content, video production, and brand storytelling',
-    icon: '✨',
+    icon: 'star',
     color: 'from-pink-600 to-rose-500',
   },
 ]
+
+const iconMap: Record<string, React.ReactNode> = {
+  robot: <FaRobot />,
+  globe: <FaGlobe />,
+  megaphone: <FaBullhorn />,
+  star: <FaStar />,
+}
 
 const ServiceCard = memo(({ service, delay }: { service: Service; delay: number }) => {
   return (
@@ -57,9 +65,9 @@ const ServiceCard = memo(({ service, delay }: { service: Service; delay: number 
           <motion.div
             whileHover={{ y: -6 }}
             transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-            className="text-5xl mb-4"
+            className="text-5xl mb-4 text-blue-400"
           >
-            {service.icon}
+            {iconMap[service.icon]}
           </motion.div>
 
           {/* Title */}

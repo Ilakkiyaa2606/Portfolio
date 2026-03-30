@@ -1,5 +1,6 @@
 import { memo } from 'react'
 import { motion } from 'framer-motion'
+import { FaRobot, FaBrain, FaCog, FaBook, FaGlobe, FaAtom, FaFire, FaPlug, FaStar, FaFilm, FaBullhorn } from 'react-icons/fa'
 
 interface Skill {
   name: string
@@ -17,32 +18,46 @@ const skillCategories: SkillCategory[] = [
     title: 'AI & ML',
     color: 'from-blue-600 to-cyan-500',
     skills: [
-      { name: 'AI Chatbot Development', icon: '🤖' },
-      { name: 'RAG (Retrieval-Augmented Generation)', icon: '🧠' },
-      { name: 'AI Model Integration', icon: '⚙️' },
-      { name: 'Basic NLP Training', icon: '📚' },
+      { name: 'AI Chatbot Development', icon: 'robot' },
+      { name: 'RAG (Retrieval-Augmented Generation)', icon: 'brain' },
+      { name: 'AI Model Integration', icon: 'cog' },
+      { name: 'Basic NLP Training', icon: 'book' },
     ],
   },
   {
     title: 'Development',
     color: 'from-purple-600 to-pink-500',
     skills: [
-      { name: 'HTML, CSS, JavaScript', icon: '🌐' },
-      { name: 'React', icon: '⚛️' },
-      { name: 'Firebase', icon: '🔥' },
-      { name: 'APIs', icon: '🔌' },
+      { name: 'HTML, CSS, JavaScript', icon: 'globe' },
+      { name: 'React', icon: 'atom' },
+      { name: 'Firebase', icon: 'fire' },
+      { name: 'APIs', icon: 'plug' },
     ],
   },
   {
     title: 'Creative',
     color: 'from-orange-600 to-red-500',
     skills: [
-      { name: 'Content Creation', icon: '✨' },
-      { name: 'Video Editing', icon: '🎬' },
-      { name: 'Social Media Management', icon: '📢' },
+      { name: 'Content Creation', icon: 'star' },
+      { name: 'Video Editing', icon: 'film' },
+      { name: 'Social Media Management', icon: 'megaphone' },
     ],
   },
 ]
+
+const iconMap: Record<string, React.ReactNode> = {
+  robot: <FaRobot />,
+  brain: <FaBrain />,
+  cog: <FaCog />,
+  book: <FaBook />,
+  globe: <FaGlobe />,
+  atom: <FaAtom />,
+  fire: <FaFire />,
+  plug: <FaPlug />,
+  star: <FaStar />,
+  film: <FaFilm />,
+  megaphone: <FaBullhorn />,
+}
 
 const SkillCard = memo(({ skill, delay, color }: { skill: Skill; delay: number; color: string }) => {
   return (
@@ -57,8 +72,8 @@ const SkillCard = memo(({ skill, delay, color }: { skill: Skill; delay: number; 
     >
       <div className={`relative bg-gradient-to-br ${color} p-1 rounded-xl transition-all duration-300 group-hover:shadow-lg`}>
         <div className="bg-gray-950 rounded-lg p-6 h-full flex flex-col items-center justify-center text-center hover:bg-gray-900/80 transition-colors duration-300">
-          <span className="text-4xl mb-3">
-            {skill.icon}
+          <span className="text-4xl mb-3 text-blue-400">
+            {iconMap[skill.icon]}
           </span>
           <p className="text-gray-200 font-semibold text-sm leading-snug">{skill.name}</p>
         </div>

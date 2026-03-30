@@ -1,14 +1,21 @@
 import { useState, useCallback, memo } from 'react'
 import { motion } from 'framer-motion'
+import { FaRobot, FaCalendarAlt, FaMoneyBillWave } from 'react-icons/fa'
 import { ProjectModal } from './ProjectModal'
 import type { ProjectData } from './ProjectModal'
+
+const iconMap: Record<string, React.ReactNode> = {
+  robot: <FaRobot />,
+  calendar: <FaCalendarAlt />,
+  money: <FaMoneyBillWave />,
+}
 
 const projects: ProjectData[] = [
   {
     id: 1,
     title: 'AI Chatbot System',
     description: 'Intelligent conversational AI with RAG capabilities',
-    icon: '🤖',
+    icon: 'robot',
     gradient: 'from-blue-600 to-cyan-500',
     problem:
       'Users needed an intelligent assistant that could provide accurate, context-aware responses by retrieving and referencing specific information from large knowledge bases in real-time.',
@@ -22,7 +29,7 @@ const projects: ProjectData[] = [
     id: 2,
     title: 'Event Discovery App',
     description: 'Real-time event discovery and booking platform',
-    icon: '🎪',
+    icon: 'calendar',
     gradient: 'from-purple-600 to-pink-500',
     problem:
       'Users struggled to discover local events that matched their interests, with fragmented information spread across multiple platforms causing missed opportunities and poor event discovery experience.',
@@ -36,7 +43,7 @@ const projects: ProjectData[] = [
     id: 3,
     title: 'WhatsApp Expense Tracker',
     description: 'Automated expense tracking via WhatsApp bot',
-    icon: '💰',
+    icon: 'money',
     gradient: 'from-green-600 to-emerald-500',
     problem:
       'People found it tedious to manually log expenses, leading to poor financial tracking and inability to analyze spending patterns. Existing solutions required switching apps and complex interfaces.',
@@ -80,8 +87,8 @@ const ProjectCard = memo(({
         {/* Card content */}
         <div className="relative h-full bg-gray-900 rounded-2xl p-8 border border-gray-800 group-hover:border-gray-700 transition-colors duration-300">
           {/* Icon */}
-          <div className="text-5xl mb-4">
-            {project.icon}
+          <div className="text-5xl mb-4 text-blue-400">
+            {iconMap[project.icon]}
           </div>
 
           {/* Title */}
